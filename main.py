@@ -14,6 +14,20 @@ apple_containers = [0 for _ in range(0, number_containers)]
 oranges_pointer = 0
 apples_pointer = 0
 
+def print_containers():
+    global number_containers
+    global fruits_container
+    global oranges_available
+    global apples_available
+    global orange_containers
+    global apple_containers
+    global oranges_pointer
+    global apples_pointer
+
+    for i, oranges in enumerate(orange_containers):
+        apples = apple_containers[i]
+        print(f'Container {i + 1}: {oranges} oranges and {apples} apples')
+
 def print_menu():
     global number_containers
     global fruits_container
@@ -31,15 +45,16 @@ def print_menu():
     menu_option = input("Please, choose your option: ")
 
     if menu_option == '1':
-    
+        print_containers()
         print_menu()
     elif menu_option == '2':
-
+        print_containers()
         print_menu()
     elif menu_option == '3':
         print(f'\nCurrent balance: ${balance} dollars')
         print_menu()
     elif menu_option == '4':
+        print_containers()
         print_menu()
     elif menu_option == '5':
         sys.exit()
