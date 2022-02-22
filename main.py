@@ -45,9 +45,48 @@ def print_menu():
     menu_option = input("Please, choose your option: ")
 
     if menu_option == '1':
+        apples_to_sell = int(input(f"How many apples do you want to sell? You currently have {apples_available} apples:"))
+
+        if apples_to_sell > apples_available:
+            print("\nYou don't have enough apples :(")
+        else:
+            apples_available -= apples_to_sell
+            balance += apples_to_sell * fruit_price
+
+            apple_containers[apples_pointer] -= apples_to_sell
+
+            if apple_containers[apples_pointer] <= 0 and (apples_pointer + 1) >= len(apple_containers):
+                apple_containers[apples_pointer] = 0
+            elif apple_containers[apples_pointer] <= 0:
+                while apple_containers[apples_pointer] <= 0:
+                    apples_pointer += 1
+                    apple_containers[apples_pointer] += apple_containers[apples_pointer - 1]
+                    apple_containers[apples_pointer - 1] = 0
+
         print_containers()
         print_menu()
     elif menu_option == '2':
+        oranges_to_sell = int(input(f"How many oranges do you want to sell? You currently have {oranges_available} oranges:"))
+
+        if oranges_to_sell > oranges_available:
+            print("\nYou don't have enough oranges :(")
+        else:
+            oranges_available -= oranges_to_sell
+            balance += oranges_to_sell * fruit_price
+
+            orange_containers[oranges_pointer] -= oranges_to_sell
+
+            if orange_containers[oranges_pointer] <= 0 and (oranges_pointer + 1) >= len(orange_containers):
+                orange_containers[oranges_pointer] = 0
+            elif orange_containers[oranges_pointer] <= 0:
+                while orange_containers[oranges_pointer] <= 0:
+                    oranges_pointer += 1
+                    orange_containers[oranges_pointer] += orange_containers[oranges_pointer - 1]
+                    orange_containers[oranges_pointer - 1] = 0
+
+                    apple_containers[oranges_pointer - 1] = fruits_container
+                    apples_available += fruits_container
+
         print_containers()
         print_menu()
     elif menu_option == '3':
